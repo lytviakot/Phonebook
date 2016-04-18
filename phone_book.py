@@ -29,12 +29,19 @@ def get_number():
 class Contact:
 
     #@user_input_decorator
-    def __init__(self):
-        self.contact = input('Enter username: ')
-        self.number = input('Enter phone number: ')
+    def __init__(self, contact, number):
+        self.contact = contact
+        self.number = number
 
-   # def __repr__(self):
-        #return '{}'.format(self.contact, self.number)
+
+def get_information():
+    contact = input('Enter username: ')
+    number = input('Enter phone number: ')
+    return contact, number
+
+
+def create_contact():
+    return Contact(*get_information())
 
 
 class Phonebook:
@@ -55,10 +62,11 @@ class Phonebook:
     def delete_contact(self, input_contact):
         del self.contacts[input_contact.contact]
 
-a = Contact()
+a = create_contact()
+print(a)
 b = Phonebook()
 b.add_contact(a)
-#serializators.json_serial_save(b)
+print(b)
 
 
 '''
