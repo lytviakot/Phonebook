@@ -62,17 +62,25 @@ class Phonebook:
     def delete_contact(self, input_contact):
         del self.contacts[input_contact.contact]
 
+    def show_number_by_user(self, input_contact):
+        if input_contact.contact in self.contacts:
+            self.contacts[input_contact.contact] = input_contact.number
+        else:
+            raise ValueError('There is no such contact in phonebook.')
+
+    def show_contacts(self):
+        if self.contacts:
+            print(self.contacts)
+        else:
+            raise ValueError('The phonebook is empty.')
+
 a = create_contact()
-print(a)
 b = Phonebook()
-b.add_contact(a)
-print(b)
+#print(b)
 
-
-'''
 class UserChoice:
 
-    def __init__(self):
+    def __init__(self, phonebook):
         self.operation = input("""Choose action:
         1 - Show phonebook
         2 - Add contact
@@ -80,7 +88,7 @@ class UserChoice:
         4 - Remove contact
         q - Quit
         """)
-        self.user_choice = {'2': Phonebook.add_contact, '4': Phonebook.delete_contact}
+        self.user_choice = {'1': phonebook.show_contacts, '2': phonebook.add_contact, '4': phonebook.delete_contact}
 
     def __repr__(self):
         return '{}'.format(self.operation)
@@ -91,4 +99,6 @@ class UserChoice:
         elif self.operation in "Qq":
             exit()
         else:
-            self.user_choice[self.operation]()'''
+            self.user_choice[self.operation]()
+
+UserChoice(b)
