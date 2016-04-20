@@ -20,7 +20,8 @@ import csv
             return f.read()
     return wrapper'''
 
-class Serializers():
+
+class Serializers:
 
     def json_serial_save(self, source):
         with open('phonebook.json', 'w') as phonebook_json:
@@ -30,10 +31,10 @@ class Serializers():
         with open('phonebook.json', 'r') as phonebook_json:
             return json.load(phonebook_json)
 
-    def csv_serial_save(self, source):
+    '''   def csv_serial_save(self, source):
         with open('phonebook.csv', 'wb') as phonebook_csv:
             csv.dump(source, phonebook_csv)
 
     def csv_serial_load(self):
         with open('phonebook.csv', 'wb') as phonebook_csv:
-            return csv.load(phonebook_csv)
+            return csv.load(phonebook_csv)'''
