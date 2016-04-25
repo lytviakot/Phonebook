@@ -23,9 +23,9 @@ import csv
 
 class Serializers:
 
-    def json_serial_save(self, source):
+    def json_serial_save(self, source, cls):
         with open('phonebook.json', 'w') as phonebook_json:
-            json.dump(source, phonebook_json)
+            json.dump(source, phonebook_json, cls)
 
     def json_serial_load(self):
         with open('phonebook.json', 'r') as phonebook_json:

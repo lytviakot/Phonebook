@@ -1,13 +1,16 @@
 import serializators
 import json
 
-saved_contacts = serializators.Serializers()
 
-class Json_objects(json.JSONEncoder):
-    def default(self, object_):
-        if isinstance(object_, Contact):
-            return [object_.contact, object_.number]
-        return json.JSONEncoder.default(object_)
+class JsonObjects(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, contact):
+            return [obj.contact, obj.number]
+        else:
+            return json.JSONEncoder.default(obj)
+
+saved_contacts = serializators.Serializers()
+#saved_contacts.json_serial_save({}, JsonObjects)
 
 
 class Contact:
@@ -33,11 +36,9 @@ class Phonebook:
 
     def add_contact(self):
             a = Contact()
-            #s = json.dumps(a, cls=Json_objects)
-            #print(s)
             if a.contact not in self.contacts:
                 self.contacts[a.contact] = a.number
-                saved_contacts.json_serial_save(self.contacts)
+                saved_contacts.json_serial_save(self.contacts, JsonObjects)
             else:
                 raise ValueError('Contact is already in phonebook.')
 
@@ -82,7 +83,7 @@ class UserChoice:
             user_choice[self.operation]()
 
 #a = Contact()
-#s = json.dumps(a, cls=Json_objects)
+#s = json.dumps(a, cls=JsonObjects)
 #print(s)
 b = Phonebook()
 b.add_contact()
